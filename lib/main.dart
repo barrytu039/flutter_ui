@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.red,
+        canvasColor: Colors.transparent
       ),
       home: MyHomePage(title: 'Flutter UI'),
     );
@@ -66,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(
           widget.title,
-          style: TextStyle(color: Colors.red),
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.black,
       ),
@@ -75,17 +76,28 @@ class _MyHomePageState extends State<MyHomePage> {
         // in the middle of the parent.
         child: _pages[_selectedIndex]
       ),
-      bottomNavigationBar: BottomNavigationBar( // 底部导航
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.business), label: "Business"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Setting"),
-        ],
-        backgroundColor: Colors.black,
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.white,
-        fixedColor: Colors.red,
-        onTap: _onItemClicked,
+      bottomNavigationBar: Container(
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+            ),
+            child: Container(
+              color: Colors.black,
+              child: BottomNavigationBar( // 底部导航
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+                  BottomNavigationBarItem(icon: Icon(Icons.business), label: "Business"),
+                  BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Setting"),
+                ],
+                backgroundColor: Color.fromARGB(255, 20, 20, 20),
+                currentIndex: _selectedIndex,
+                unselectedItemColor: Colors.white,
+                fixedColor: Colors.red,
+                onTap: _onItemClicked,
+              )
+            ),
+          ),
       ),
     );
   }
